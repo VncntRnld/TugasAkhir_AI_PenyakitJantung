@@ -40,13 +40,14 @@ with col1:
 
 # Prediction
 heartDiagnosis = ""
+input_data = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
 
 # Tombol prediction
-with col3:
-    if st.button("Prediksi penyakit jantung"):
-        heartPrediction = model.predict([[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]])
+if st.button("Prediksi penyakit jantung"):
+    heart_prediction = model.predict([[float(x) for x in input_data]])
 
-        if(heartPrediction[0]==1):
-            heartDiagnosis = 'Pasien Terkena Penyakit Jantung'
-        else:
-            heartDiagnosis = 'Pasien Tidak Terkena Penyakit Jantung'
+    if(heart_prediction[0]==1):
+        heartDiagnosis = 'Pasien Terkena Penyakit Jantung'
+    else:
+        heartDiagnosis = 'Pasien Tidak Terkena Penyakit Jantung'
+st.success(heartDiagnosis)
